@@ -1,7 +1,7 @@
 namespace languages_app.Models;
 
 public class Language {
-    public Guid LanguageId { get; set; }
+    public Guid LanguageId { get; private set; } = Guid.NewGuid();
 
     public Guid LanguageFamilyId { get; set; } = Guid.Empty;
 

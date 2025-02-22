@@ -7,6 +7,10 @@
 <h2>Language</h2>
 <ul>
     @foreach (var language in Model.Languages) {
-        <li>@language.Name</li>
+        <li>
+            <a asp-asp-controller="Language" asp-action="LanguageInfo" asp-route-id="@language.LanguageId">
+                @language.Name
+            </a>
+        </li>
     }
 </ul>

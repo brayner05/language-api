@@ -1,5 +1,6 @@
 
 using languages_app.Models;
+using languages_app.Repositories;
 using languages_app.Utilities;
 
 namespace languages_app.Services;
@@ -22,11 +23,13 @@ public class LanguageService : ILanguageService {
     }
 
     public List<Language> GetAllLanguages() {
-        return [];
+        return LanguageRepository.GetAllLanguages();
     }
 
     public ServiceResult<Language> GetLanguageById(Guid languageId) {
-        throw new NotImplementedException();
+        var language = LanguageRepository.GetLanguageById(languageId);
+        var success = language is not null;
+        return new ServiceResult<Language>(success: success, value: language);
     }
 
     public ServiceResult<Language> UpdateLanguageById(Guid languageId, Language newValues) {
