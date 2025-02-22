@@ -7,5 +7,14 @@
 <h1>@Model.Name</h1>
 <strong>@Model.LocalName</strong>
 
+<p>
+    @Model.Name (@Model.LocalName) 
+    @if (!string.IsNullOrEmpty(@Model.LanguageFamilyName)) {
+        <span>is part of the @Model.LanguageFamilyName language family.</span>
+    } else {
+        <span>is a language isolate.</span>
+    }
+</p>
+
 <h2>Sample Text</h2>
 <p>@Model.SampleText</p>

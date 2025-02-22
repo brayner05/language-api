@@ -11,6 +11,7 @@ builder.Services.AddDbContext<LanguageContext>(options => {
 });
 builder.Services.AddScoped<ILanguageService, LanguageService>();
 builder.Services.AddScoped<ILanguageFamilyService, LanguageFamilyService>();
+builder.Services.AddScoped<ILanguageFamilyService, LanguageFamilyService>();
 
 var app = builder.Build();
 

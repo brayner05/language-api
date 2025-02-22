@@ -1,7 +1,10 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace languages_app.Models;
 
 public class Language {
-    public Guid LanguageId { get; private set; } = Guid.NewGuid();
+    [Key]
+    public Guid LanguageId { get; set; }
 
     public Guid LanguageFamilyId { get; set; } = Guid.Empty;
 
