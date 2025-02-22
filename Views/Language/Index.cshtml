@@ -1,0 +1,12 @@
+@model languages_app.ViewModels.LanguageListViewModel
+
+@{
+    ViewData["Title"] = "Hello, World!";
+}
+
+<h2>Language</h2>
+<ul>
+    @foreach (var language in Model.Languages) {
+        <li>@language.Name</li>
+    }
+</ul>
