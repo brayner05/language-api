@@ -1,6 +1,6 @@
 
+using languages_app.Data;
 using languages_app.Models;
-using languages_app.Repositories;
 using languages_app.Utilities;
 
 namespace languages_app.Services;
@@ -13,7 +13,9 @@ public interface ILanguageService {
     ServiceResult<Language> DeleteLanguageById(Guid languageId);
 }
 
-public class LanguageService : ILanguageService {
+public class LanguageService(LanguageContext dbContext) : ILanguageService {
+    private readonly LanguageContext _dbContext = dbContext;
+
     public ServiceResult<Language> AddLanguage(Language language) {
         throw new NotImplementedException();
     }
@@ -23,11 +25,12 @@ public class LanguageService : ILanguageService {
     }
 
     public List<Language> GetAllLanguages() {
-        return LanguageRepository.GetAllLanguages();
+        var languages = _dbContext.Languages.ToList();
+        return languages;
     }
 
     public ServiceResult<Language> GetLanguageById(Guid languageId) {
-        var language = LanguageRepository.GetLanguageById(languageId);
+        var language = _dbContext.Languages.Find(languageId);
         var success = language is not null;
         return new ServiceResult<Language>(success: success, value: language);
     }

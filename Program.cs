@@ -1,10 +1,16 @@
+using languages_app.Data;
 using languages_app.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<LanguageContext>(options => {
+    options.UseInMemoryDatabase("LanguageDb");
+});
 builder.Services.AddScoped<ILanguageService, LanguageService>();
+builder.Services.AddScoped<ILanguageFamilyService, LanguageFamilyService>();
 
 var app = builder.Build();
 
